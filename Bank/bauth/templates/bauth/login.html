@@ -1,0 +1,14 @@
+{% extends 'bauth/base.html' %}
+{% load crispy_forms_tags %}
+{% block bodyContentBlock %}
+<div>
+<form class="" method="post">
+  {%csrf_token%}
+  {{form|crispy}}
+  <input type="submit" name="submit" value="Login">
+</form>
+<small class="text-muted">
+Don't Have An Account? <a href="{% url 'bauth:register' %}" class="btn btn-primary">Register</a>
+</small>
+</div>
+{% endblock bodyContentBlock %}

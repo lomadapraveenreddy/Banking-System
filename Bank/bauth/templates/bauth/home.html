@@ -1,0 +1,7 @@
+{% extends 'bauth/base.html' %}
+
+{% block bodyContentBlock %}
+<h3>Home Page</h3>
+<a href="{% url 'bauth:login' %}" class="btn btn-primary">Login</a>
+ <a href="{% url 'bauth:register' %}" class="btn btn-primary">Register</a>
+{% endblock bodyContentBlock %}
