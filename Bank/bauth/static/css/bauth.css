@@ -1,0 +1,11 @@
+.bauth-box {
+    text-align: center;
+    font-size: 0.8rem;
+    padding: 1rem 0;
+    width: 35%;
+    border-style: groove;
+    border-radius: 50px;
+    border: 2px solid #a4c5c6;
+    background-color: #fff;
+    margin: 2% auto 0 auto;
+}
