@@ -1,4 +1,7 @@
 {% extends 'bauth/base.html' %}
 {% block bodyContentBlock %}
-<h5>You Have Succesfully Logged In!</h5>
+<div>
+    <h1>Welcome {{user.username}}</h1>
+    <h3>Your Balance:{{balance}}</h3>
+</div>
 {% endblock bodyContentBlock %}

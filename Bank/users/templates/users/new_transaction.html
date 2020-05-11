@@ -1,0 +1,12 @@
+{%extends 'bauth/base.html' %}
+{% load crispy_forms_tags %}
+{% block bodyContentBlock %}
+<div class='left-box'>
+<h3>Enter Details</h3>
+<form class="" method="post">
+  {%csrf_token%}
+  {{form|crispy}}
+  <input type="submit" name="submit" value="Submit">
+</form>
+</div>
+{% endblock bodyContentBlock %}

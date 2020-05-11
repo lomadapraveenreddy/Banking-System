@@ -15,6 +15,7 @@ def register(request):
         if form.is_valid():
             username=form.cleaned_data.get('username')
             messages.success(request,f'Account is Sucessfully Created for {username}',)
+            form.save()
             return HttpResponseRedirect(reverse('bauth:login'))
     else:
         form=UserCreationForm()
