@@ -2,14 +2,17 @@
     text-align: center;
     font-size: 0.8rem;
     padding: 1rem 0;
-    width: 35%;
+    width: 25%;
+    background-color: palegreen;
+    position: absolute;
+    left: 10%;
     border-style: groove;
-    border-radius: 50px;
+    border-radius: 20px;
     border: 2px solid #a4c5c6;
-    background-color: #fff;
     margin: 2% auto 0 auto;
 }
-.left-box{
+
+.left-box {
     text-align: center;
     font-size: 0.8rem;
     padding: 1rem 0;
@@ -21,6 +24,22 @@
     margin: 2% auto 0 auto;
 }
 
-.my-transaction-table{
-    width: 80%;
+.center-box {
+    text-align: center;
+    font-size: 0.8rem;
+    padding: 1rem 0;
+    width: 30%;
+    border-style: groove;
+    border-radius: 10px;
+    border: 2px solid #a4c5c6;
+    background-color: #fff;
+    margin: 2% auto 0 auto;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px 2rem;
 }

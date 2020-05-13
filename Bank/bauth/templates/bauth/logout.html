@@ -1,1 +1,9 @@
 {% extends 'bauth/base.html' %}
+
+{% block bodyContentBlock %}
+<div style="background-color: honeydew; text-align: center; padding-top: 0.5rem;"><h4>You have Successfully logged out</h4></div>
+<div>
+    <a href="{% url 'bauth:login' %}" class="btn btn-primary">Login</a>
+    <a href="{% url 'bauth:register' %}" class="btn btn-primary">Register</a>
+</div>
+{% endblock bodyContentBlock %}
