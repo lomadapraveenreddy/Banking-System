@@ -1,6 +1,7 @@
 from django.views.generic import (
     DetailView,
     ListView,
+    UpdateView
 )
 from .models import Customer
 from django.shortcuts import render,reverse
@@ -8,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect,HttpResponse
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User 
-from .forms import NewTransactionForm
+from .forms import NewTransactionForm,UserUpdateForm
 from .models import Transaction,Customer
 from django.contrib import messages
 import time,string,random
@@ -77,11 +78,13 @@ class TransactionListView(ListView):
 
 class ProfileDetailView(DetailView):
     model=Customer
-
+    fields=['username']
     def get_object(self,**kwargs):
         user=None    
         user=User.objects.filter(username=self.kwargs['username']).first()
         return get_object_or_404(Customer,user=user)
+
+
 
 class TransactionDetailView(DetailView):
     model=Transaction

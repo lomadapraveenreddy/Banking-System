@@ -1,7 +1,10 @@
 {%extends 'users/base.html' %} {% block bodyContentBlock %}
-<div class='card' style="width: 30%;">
-    <h3>{{object.user.username}}</h3>
-    <h4>{{object.amount}}</h4>
+<div class='card' style="padding: 2rem;" >
+    
+       <h4>{{object.user.username}}</h4>
+       
+       {{object.accountNumber}}
+    
 
 </div>
 {% endblock bodyContentBlock %}
