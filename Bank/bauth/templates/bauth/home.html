@@ -1,11 +1,11 @@
 {% extends 'bauth/base.html' %}
 
 {% block bodyContentBlock %}
-<h3>Home Page</h3>
-<h1 style="text-align: center;">Welcome to the Bank</h1>
-<div>
-    <a href="{% url 'bauth:login' %}" class="btn btn-primary">Login</a>
-    <a href="{% url 'bauth:register' %}" class="btn btn-primary">Register</a>
+
+<div style=" padding: 0 2rem;">
+    <img  class="center-image" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.tMdshbstcFb70GA4k2NhzgHaGQ%26pid%3DApi&f=1" alt="Welcome to the Bank">
+    <!-- <a href="{% url 'bauth:login' %}" class="btn btn-primary">Login</a>
+    <a href="{% url 'bauth:register' %}" class="btn btn-primary">Register</a> -->
 </div>
 
 {% endblock bodyContentBlock %}

@@ -3,13 +3,11 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from .models import Customer
 import random,string
+import uuid 
 
 @receiver(post_save,sender=User)
 def create_customer(sender,instance,created,**kwargs):
     if created:
-        Customer.objects.create(user=instance,accountNumber=''.join(random.choices(string.digits,k=10))).save()
-
-
-# @receiver(post_save,sender=User)
-# def save_customer(sender,instance,**kwargs):    
-#     instance.customer.save()
+        Customer.objects.create(user=instance,\
+            accountNumber=str(uuid.uuid4().fields[-1])[:10]).save()
+        
