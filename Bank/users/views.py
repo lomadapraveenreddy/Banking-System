@@ -77,6 +77,7 @@ def complaintCreateView(request, **kwargs):
         if form.is_valid():
             text = form.cleaned_data.get('text')
             complaintObj=Complaint(complaintID=''.join(random.choices(string.ascii_letters + string.digits, k=15)),
+                      complaintUser=request.user,
                       transaction=Transaction.objects.all().filter(transactionID=kwargs['transactionID']).first(), 
                       text=text, )
             complaintObj.save()
@@ -125,3 +126,13 @@ class TransactionDetailView(LoginRequiredMixin, DetailView):
 
     def get_object(self, **kwargs):
         return get_object_or_404(Transaction, transactionID=self.kwargs['transactionID'])
+
+class MyComplaintListView(LoginRequiredMixin,ListView):
+    model=Complaint
+    context_object_name='complaints'
+
+
+    def get_queryset(self):
+        queryset=Complaint.objects.all()
+        complaints=queryset.filter(complaintUser=self.request.user)
+        return complaints

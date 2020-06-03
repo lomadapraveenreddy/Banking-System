@@ -1,0 +1,25 @@
+{% extends 'users/base.html' %} {% block bodyContentBlock %} {%if complaints %}
+<table style="margin-left: 2rem; margin-top: 1rem;">
+    <tr>
+        <th>Complaint ID</th>
+        <th>Date and Time</th>
+        <th>complaint about</th>
+        <th>status</th>
+    </tr>
+    {%for complaint in complaints %}
+    <tr>
+        <td>{{complaint.complaintID}}</td>
+        <td>{{complaint.dateTime}}</td>
+        <td>{{complaint.text}}</td>
+        {% if complaint.status%}
+        <td>Resolved</td>
+        {% else %}
+        <td>Unresolved</td>
+        {% endif %}
+    </tr>
+    {%endfor%}
+
+</table>
+{%else%}
+<h5>No complaints raised yet</h5>
+{% endif %} {% endblock bodyContentBlock %}

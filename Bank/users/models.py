@@ -24,10 +24,11 @@ class Transaction(models.Model):
     
 class Complaint(models.Model):
     complaintID=models.CharField(max_length=15,unique=True)
-    user=models.ForeignKey(User,on_delete=models.CASCADE,default=User.objects.all().filter(username='praveenreddy').first())
+    complaintUser=models.ForeignKey(User,on_delete=models.CASCADE)
     transaction=models.ForeignKey(Transaction,on_delete=models.CASCADE)
     dateTime=models.DateTimeField(auto_now=True)
     text=models.TextField(max_length=180)
+    status=models.BooleanField(default=False)
 
 
     def __str__(self):
