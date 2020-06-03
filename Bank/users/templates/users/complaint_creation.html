@@ -1,0 +1,11 @@
+{% extends 'users/base.html' %} {% block bodyContentBlock %}
+<div style="margin: 0 auto;">
+<h1>Raise Your Complaint Here</h1>
+<form  method="post">
+    {% csrf_token %}
+    {{form}}
+    <input name="submit" type="submit" value="Submit">
+</form>
+    
+</div>
+{% endblock bodyContentBlock %}

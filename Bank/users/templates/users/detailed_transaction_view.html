@@ -1,25 +1,33 @@
 {% extends 'users/base.html' %} {% block bodyContentBlock %}
-<table class="my-transaction-table">
-    <tr>
-        <th>transaction ID</th>
-        <th>Time</th>
-        <th>From</th>
-        <th>To</th>
-        <th>amount</th>
-        <th>status</th>
-    </tr>
-    <tr>
-        <td>{{transaction.transactionID}}</td>
-        <td>{{transaction.dateTime}}</td>
-        <td>{{transaction.transactionFrom.username}}</td>
-        <td>{{transaction.transactionTo.username}}</td>
-        <td>{{transaction.transactionAmount}}</td>
-        {% if transaction.success %}
-        <td>Success</td>
-        {% else %}
-        <td>Failed</td>
-        {% endif %}
-    </tr>
+<div>
 
-</table>
+    <table class="my-transaction-table">
+        <tr>
+            <th>transaction ID</th>
+            <th>Time</th>
+            <th>From</th>
+            <th>To</th>
+            <th>amount</th>
+            <th>status</th>
+        </tr>
+        <tr>
+            <td>{{transaction.transactionID}}</td>
+            <td>{{transaction.dateTime}}</td>
+            <td>{{transaction.transactionFrom.username}}</td>
+            <td>{{transaction.transactionTo.username}}</td>
+            <td>{{transaction.transactionAmount}}</td>
+            {% if transaction.success %}
+            <td>Success</td>
+            {% else %}
+            <td>Failed</td>
+            {% endif %}
+        </tr>
+        
+    </table>
+    <br>
+    <a class="btn btn-outline-dark" href="{%url 'users:create-complaint' transaction.transactionID %}">
+        Raise a Complaint
+    </a>    
+
+</div>
 {% endblock bodyContentBlock %}

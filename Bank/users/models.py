@@ -20,5 +20,15 @@ class Transaction(models.Model):
     success=models.BooleanField(default=False)
 
     def __str__(self):
-        return f'transaction from {self.transactionFrom.username} to {self.transactionTo.username}'
+        return f'{self.transactionID} transaction from {self.transactionFrom.username} to {self.transactionTo.username}'
     
+class Complaint(models.Model):
+    complaintID=models.CharField(max_length=15,unique=True)
+    user=models.ForeignKey(User,on_delete=models.CASCADE,default=User.objects.all().filter(username='praveenreddy').first())
+    transaction=models.ForeignKey(Transaction,on_delete=models.CASCADE)
+    dateTime=models.DateTimeField(auto_now=True)
+    text=models.TextField(max_length=180)
+
+
+    def __str__(self):
+        return f' complaint {self.complaintID} of {self.transaction}'

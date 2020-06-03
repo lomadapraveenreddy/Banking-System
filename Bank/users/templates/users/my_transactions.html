@@ -12,11 +12,11 @@
     <tr>
         <td>{{transaction.dateTime}}</td>
         <td>{{transaction.transactionAmount}}</td>
-        {% if transaction.transactionFrom is user %}
+        {% ifequal transaction.transactionFrom.username  user.username %}
         <td>Debit</td>
         {%else%}
         <td>Credit</td>
-        {%endif%} {% if transaction.success %}
+        {%endifequal%} {% if transaction.success %}
         <td>Success</td>
         {% else %}
         <td>Failed</td>
