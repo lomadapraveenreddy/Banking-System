@@ -4,14 +4,17 @@ from django.views.generic import (
     UpdateView,
     CreateView,
 )
-from .models import Customer
 from django.shortcuts import render, reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
-from .forms import NewTransactionForm, UserUpdateForm, ComplaintCreationForm
-from .models import Transaction, Customer, Complaint
+from .forms import (NewTransactionForm,
+                    UserUpdateForm, 
+                    ComplaintCreationForm,
+                    ApplyLoanForm,
+                    )
+from .models import Transaction, Customer, Complaint,Loan
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 import time
@@ -92,10 +95,31 @@ def complaintCreateView(request, **kwargs):
     return render(request,'users/complaint_creation.html',{'form':form})
 
 
-# @login_required
-# def myTransactions(request):
-#     transactions=list(request.user.debited.all())+list(request.user.credited.all())
-#     return render(request,'users/my_transactions.html',{'transactions':transactions})
+@login_required
+def applyLoanView(request):
+    if request.method=='POST':
+        form=ApplyLoanForm(request.POST)
+        if form.is_valid():
+            loanUser=User.objects.all().filter(username=request.user.username).first()
+            print(loanUser)
+            loanAmount = form.cleaned_data.get('loanAmount')
+            loanAbout = form.cleaned_data.get('loanAbout')
+            loanCustomer=loanUser.customer
+            loanCustomer.amount+=loanAmount
+            loanCustomer.save()
+            loanObj=Loan(loanID=''.join(random.choices(string.digits, k=15)),
+                loanUser=loanUser,
+                loanAmount=loanAmount,
+                loanAbout=loanAbout)
+            loanObj.save()
+            messages.success(
+                        request, f'Loan Sanctioned Sucessfully')
+            return HttpResponseRedirect(reverse('users:home'))
+    else:
+        form=ApplyLoanForm()
+    return render(request,'users/apply_loan.html',{'form':form})
+
+
 
 
 class TransactionListView(LoginRequiredMixin, ListView):
@@ -107,6 +131,8 @@ class TransactionListView(LoginRequiredMixin, ListView):
         queryset = super().get_queryset()
         transactions = list(queryset.filter(transactionFrom=self.request.user))
         transactions += list(queryset.filter(transactionTo=self.request.user))
+        #loans=Loan.objects.filter(loanUser=self.request.user)
+        #transactions+=list(loans)
         return transactions
 
 
@@ -136,3 +162,14 @@ class MyComplaintListView(LoginRequiredMixin,ListView):
         queryset=Complaint.objects.all()
         complaints=queryset.filter(complaintUser=self.request.user)
         return complaints
+
+
+class MyLoanListView(LoginRequiredMixin,ListView):
+    model=Loan
+    context_object_name='loans'
+
+
+    def get_queryset(self):
+        queryset=Loan.objects.all()
+        loans=queryset.filter(loanUser=self.request.user)
+        return loans 

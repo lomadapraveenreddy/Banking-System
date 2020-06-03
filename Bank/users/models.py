@@ -15,6 +15,7 @@ class Transaction(models.Model):
     transactionID=models.CharField(max_length=15,unique=True)
     dateTime=models.DateTimeField(auto_now=True)
     transactionAmount=models.BigIntegerField()
+    loan=models.BooleanField(default=False)
     transactionFrom=models.ForeignKey(User,on_delete=models.CASCADE,related_name='debited')
     transactionTo=models.ForeignKey(User,on_delete=models.CASCADE,related_name='credited',default=None)
     success=models.BooleanField(default=False)
@@ -33,3 +34,24 @@ class Complaint(models.Model):
 
     def __str__(self):
         return f' complaint {self.complaintID} of {self.transaction}'
+
+class Loan(models.Model):
+    loanID=models.CharField(max_length=15,unique=True)
+    loanUser=models.ForeignKey(User,on_delete=models.CASCADE)
+    dateTime=models.DateTimeField(auto_now=True)
+    loanAmount=models.BigIntegerField()
+    loanAbout=models.TextField()
+
+    def __str__(self):
+
+        return f'loan to {self.loanUser.username} of {self.loanAmount}'
+
+
+
+class DebitCard(models.Model):
+    cardUser=models.ForeignKey(User,on_delete=models.CASCADE)
+    cardNumber=models.CharField(max_length=12)
+    nameOnCard=models.CharField(max_length=18)
+    expiryDate=models.DateTimeField(auto_now=True)
+    cvv=models.PositiveIntegerField()
+    pin=models.PositiveIntegerField()

@@ -1,0 +1,21 @@
+{% extends 'users/base.html' %} {% block bodyContentBlock %} {%if loans %}
+<table style="margin-left: 2rem; margin-top: 1rem;">
+    <tr>
+        <th>Loan ID</th>
+        <th>Date and Time</th>
+        <th>Loan Amount</th>
+        <th>Loan For</th>
+    </tr>
+    {%for loan in loans %}
+    <tr>
+        <td>{{loan.loanID}}</td>
+        <td>{{loan.dateTime}}</td>
+        <td>{{loan.loanAmount}}</td>
+        <td>{{loan.loanAbout}}</td>
+    </tr>
+    {%endfor%}
+
+</table>
+{%else%}
+<h5>No loans taken</h5>
+{% endif %} {% endblock bodyContentBlock %}

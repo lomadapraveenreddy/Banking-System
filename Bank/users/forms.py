@@ -17,6 +17,11 @@ class UserUpdateForm(forms.ModelForm):
 class ComplaintCreationForm(forms.Form):
     text=forms.CharField(label='Enter Your Complaint',widget=forms.Textarea(attrs={"rows":5, "cols":50}))
 
+class ApplyLoanForm(forms.Form):
+    loanAmount=forms.IntegerField(label='Amoount')
+    loanAbout=forms.CharField(label='Why do you need loan',widget=forms.Textarea(attrs={"rows":5, "cols":50}))
+
+
 # class CustomerUpdateForm(forms.ModelForm):
 #     class Meta:
 #         model=Customer

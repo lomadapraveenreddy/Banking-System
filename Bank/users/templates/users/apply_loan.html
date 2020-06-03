@@ -1,0 +1,11 @@
+{% extends 'users/base.html' %} {% block bodyContentBlock %}
+<div style="margin: 0 auto;">
+<h1>Apply for Loan</h1>
+<form  method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input name="submit" type="submit" value="Submit">
+</form>
+    
+</div>
+{% endblock bodyContentBlock %}
