@@ -55,3 +55,6 @@ class DebitCard(models.Model):
     expiryDate=models.DateTimeField(auto_now=True)
     cvv=models.PositiveIntegerField()
     pin=models.PositiveIntegerField()
+
+    def __str__(self):
+        return f'Debit Card of {self.cardUser.username}'

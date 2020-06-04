@@ -14,7 +14,7 @@ from .forms import (NewTransactionForm,
                     ComplaintCreationForm,
                     ApplyLoanForm,
                     )
-from .models import Transaction, Customer, Complaint,Loan
+from .models import Transaction, Customer, Complaint,Loan,DebitCard
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 import time
@@ -173,3 +173,10 @@ class MyLoanListView(LoginRequiredMixin,ListView):
         queryset=Loan.objects.all()
         loans=queryset.filter(loanUser=self.request.user)
         return loans 
+
+class DetailDebitCardView(LoginRequiredMixin,DetailView):
+    model=DebitCard
+    context_object_name='card'
+
+    def get_object(self,**kwargs):
+        return get_object_or_404(DebitCard,cardUser=self.request.user)

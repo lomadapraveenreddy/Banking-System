@@ -1,0 +1,24 @@
+{% extends 'users/base.html' %} {% block bodyContentBlock %}
+<div>
+
+    <table class="my-transaction-table">
+        <tr>
+            <th>Card Number</th>
+            <th>Name On Card</th>
+            <th>Expiry Date</th>
+            <th>Cvv</th>
+            
+        </tr>
+        <tr>
+            <td>{{card.cardNumber}}</td>
+            <td>{{card.nameOnCard}}</td>
+            <td>{{card.expiryDate}}</td>
+            <td>{{card.cvv}}</td>
+
+        </tr>
+        
+    </table>
+    <br> 
+
+</div>
+{% endblock bodyContentBlock %}
