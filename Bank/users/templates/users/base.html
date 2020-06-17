@@ -1,6 +1,16 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+<style>
+    .copyright {
+        position: fixed;
+        left: 0;
+        width: 100%;
+        color: blueviolet;
+        text-align: center;
+        bottom: 0;
+    }
+</style>
 
 <head>
     <meta charset="utf-8"> {%if title%}
@@ -9,14 +19,16 @@
     <title>Bank Website</title>
     {%endif%}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
 
     <div>
-
         <nav style=" padding: 0 5%; font-size: larger; " class="navbar navbar-expand-lg navbar-dark bg-dark ">
             <a class="nav-item " href="{%url 'users:home' %} ">Bank</a>
 
@@ -26,40 +38,48 @@
             <span class="nav-item " style="padding: 0 3%; ">
                 <a class="nav-link " href="{%url 'users:about'%} ">About</a>
             </span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto ">
+                    <li class="nav-item ">
+                        <a class="nav-link " href="{%url 'users:new-transaction'%} ">New Transaction</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="{%url 'users:my-transactions'%} ">My Transactions</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="{%url 'users:my-complaints'%} ">My Complaints</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="{%url 'users:my-debit-card' %} ">My Debit Card</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="{%url 'users:apply-loan'%} ">Apply for a Loan</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="{%url 'users:my-loans'%} ">My Loans</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="{% url 'users:profile' user.username %} ">Profile</a>
 
-            <ul class="navbar-nav ml-auto ">
-                <li class="nav-item ">
-                    <a class="nav-link " href="{%url 'users:new-transaction'%} ">New Transaction</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " href="{%url 'users:my-transactions'%} ">My Transactions</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " href="{%url 'users:my-complaints'%} ">My Complaints</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " href="{%url 'users:my-debit-card' %} ">My Debit Card</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " href="{%url 'users:apply-loan'%} ">Apply for a Loan</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " href="{%url 'users:my-loans'%} ">My Loans</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " href="{% url 'users:profile' user.username %} ">Profile</a>
-                    
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " href="{% url 'bauth:logout' %} ">Logout</a>
-                </li>
-            </ul>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="{% url 'bauth:logout' %} ">Logout</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
+    </div>
+    <div class="copyright" style="color: black;">
+        <p>&copy; Copyright 2020 All rights reserved.</p>
     </div>
     {% if messages %} {% endif %} {% for message in messages %}
     <div class="alert alert-{{message.tags}} ">
         {{message}}
     </div>
+
     {% endfor %}
     <div style="padding: 1% 5%;">
         {% block bodyContentBlock %} {%endblock bodyContentBlock%}

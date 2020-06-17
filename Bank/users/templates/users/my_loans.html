@@ -1,4 +1,11 @@
 {% extends 'users/base.html' %} {% block bodyContentBlock %} {%if loans %}
+<style>
+.myloan{
+	position:fixed;
+	left:15%;
+}
+</style>
+<div class="myloan background">
 <table style="margin-left: 2rem; margin-top: 1rem;">
     <tr>
         <th>Loan ID</th>
@@ -16,6 +23,7 @@
     {%endfor%}
 
 </table>
+</div>
 {%else%}
-<h5>No loans taken</h5>
+<h5 class="background">No loans taken</h5>
 {% endif %} {% endblock bodyContentBlock %}

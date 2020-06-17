@@ -1,7 +1,18 @@
 {%extends 'bauth/base.html'%}
 {% load crispy_forms_tags %}
 {%block bodyContentBlock%}
-<div class='bauth-box'>
+<style>
+
+  .bauth-box{
+  position:fixed;
+  left:38%;
+  }
+  .box{
+   font-family: "Times New Roman", Times, serif;
+      }
+  </style>
+<div class='background bauth-box'>
+  <h3>Register Here</h3>
 <form class="" method="post">
   {%csrf_token%}
   {{form|crispy}}

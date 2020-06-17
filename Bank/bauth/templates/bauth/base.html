@@ -1,6 +1,17 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+<style>
+ .copyright {
+        position: fixed;
+        left: 0;
+         width: 100%;
+         color: blueviolet;
+         text-align: center;
+         bottom: 0;
+    }
+
+</style>
 
 <head>
     <meta charset="utf-8"> {%if title%}
@@ -13,7 +24,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body class="" >
 
     <div>
         <nav style="padding: 0 5%; font-size: larger;" class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -21,6 +32,9 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{%url 'bauth:home'%}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'bauth:login'%}">Login</a>
@@ -31,12 +45,18 @@
             </ul>
         </nav>
     </div>
+    
 
     {% if messages %} {% for message in messages %}
     <div class="alert alert-{{message.tags}}">
         {{message}}
     </div>
     {% endfor %} {% endif %} {% block bodyContentBlock %} {%endblock bodyContentBlock%}
+    <br><br><br><br>
+  <div class="copyright" style="color: black;" >
+        <p>&copy; Copyright 2020 All rights reserved.</p>
+    </div>
 </body>
+
 
 </html>

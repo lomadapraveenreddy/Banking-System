@@ -16,6 +16,7 @@ urlpatterns = [
     path('new_transaction/',views.newTransaction,name='new-transaction'),
     path('my_transactions/',TransactionListView.as_view(template_name='users/my_transactions.html'),name='my-transactions'),
     path('my_complaints/',MyComplaintListView.as_view(template_name='users/my_complaints.html'),name='my-complaints'),
+    path('change_password/',views.change_password,name='change_password'),
     path('loan/',views.applyLoanView,name='apply-loan'),
     path('my_loans/',MyLoanListView.as_view(template_name='users/my_loans.html'),name='my-loans'),
     path('my_debit_card/',DetailDebitCardView.as_view(template_name='users/debit_card_view.html'),name='my-debit-card'),

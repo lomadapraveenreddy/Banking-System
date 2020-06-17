@@ -1,4 +1,11 @@
 {% extends 'users/base.html' %} {% block bodyContentBlock %} {%if complaints %}
+<style>
+.complaint{
+	position:fixed;
+	left:15%;
+}
+</style>
+<div class="complaint background" >
 <table style="margin-left: 2rem; margin-top: 1rem;">
     <tr>
         <th>Complaint ID</th>
@@ -20,6 +27,7 @@
     {%endfor%}
 
 </table>
+</div>
 {%else%}
 <h5>No complaints raised yet</h5>
 {% endif %} {% endblock bodyContentBlock %}

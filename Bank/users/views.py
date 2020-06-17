@@ -7,8 +7,10 @@ from django.views.generic import (
 from django.shortcuts import render, reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404,redirect
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 from .forms import (NewTransactionForm,
                     UserUpdateForm, 
                     ComplaintCreationForm,
@@ -119,7 +121,22 @@ def applyLoanView(request):
         form=ApplyLoanForm()
     return render(request,'users/apply_loan.html',{'form':form})
 
-
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('users:home')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'users/change_password.html', {
+        'form': form
+    })
 
 
 class TransactionListView(LoginRequiredMixin, ListView):

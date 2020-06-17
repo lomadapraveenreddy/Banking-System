@@ -1,5 +1,16 @@
 {% extends 'users/base.html' %} {% block bodyContentBlock %}
-<div>
+<style>
+.home{
+	position:fixed;
+	left:38%;
+}
+h1{
+	background-image: linear-gradient(to right,skyblue, white);
+	/* text-shadow:2px 2px 3px cyan,4px 4px 5px red; */
+}
+	
+</style>
+<div class="home background">
     <h1>Welcome {{user.username}}</h1>
     <h3>Your Balance:{{balance}}</h3>
 </div>
