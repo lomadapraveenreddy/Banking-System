@@ -1,7 +1,9 @@
-#####DBMS project
+# Team
+LOMADA PRAVEEN KUMAR REDDY-181CO230
+VERUPAKA YASHWANTH REDDY-181CO256
 
-#Clone this and change directory to Bank/
+# Instructions to launch
+1. Navigate to Bank directory
+2. execute the command python3 manage.py runserver in the terminal
 
-#To run the server execute "python3 manage.py runserver"
-
-#The server runs on the port 8000
+   if the port 8000 is blocked then run it on some other port using python3 manage.py runserver "port number".
